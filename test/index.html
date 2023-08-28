@@ -88,19 +88,19 @@
         drawGeigerCounter()
         // touchstart,touchmove,touchend
         // mousedown,mousemove,mouseup
-        canvas.addEventListener('mousedown', function (event) {
+        canvas.addEventListener('touchstart', function (event) {
             rect = canvas.getBoundingClientRect()
-            // event = event.touches[0]
+            event = event.touches[0]
             X = event.clientX - rect.left
             Y = event.clientY - rect.top
             if (Math.sqrt((X - centerX) ** 2 + (Y - centerY) ** 2) <= radius) {
                 circleCatched = true
             }
         })
-        canvas.addEventListener("mousemove", function (event) {
+        canvas.addEventListener("touchmove", function (event) {
             if (circleCatched) {
                 rect = canvas.getBoundingClientRect();
-                // event = event.touches[0]
+                event = event.touches[0]
                 X = event.clientX - rect.left
                 Y = event.clientY - rect.top
 
@@ -111,7 +111,7 @@
                 drawGeigerCounter()
             }
         })
-        canvas.addEventListener("mouseup", function () {
+        canvas.addEventListener("touchend", function () {
             circleCatched = false;
             angle = -Math.PI
             sound.pause()
